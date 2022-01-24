@@ -1,26 +1,60 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { 
+  MantineProvider, 
+  Button, 
+  AppShell, 
+  Navbar, 
+  Header,
+  Text 
+} from '@mantine/core';
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppShell
+      padding="md"
+      navbar={
+        <Navbar height={600} padding="xs" width={{ base: 300 }}>
+        <Navbar.Section>
+          <Text>
+            Dashboards
+          </Text>
+        </Navbar.Section>
+        <Navbar.Section>
+          <Text>  
+            KPIs
+          </Text>
+        </Navbar.Section>
+        <Navbar.Section>
+          <Text>
+            Carga de dados
+          </Text>
+        </Navbar.Section>
+      </Navbar>
+      }
+      
+      header={<Header height={60} padding="xs">
+        {/* Header content */}
+      </Header>}
+      styles={(theme) => ({
+        main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
+      })}
+    >
+      {/* Your application here */}
+    </AppShell>
+  );
+
+}
+
+// Custom theme is applied to all components in App
+function WithProvider() {
+  return (
+    <MantineProvider theme={{ colorScheme: 'dark' }}>
+      <App />
+    </MantineProvider>
   );
 }
 
-export default App;
+
+
+export default WithProvider;
